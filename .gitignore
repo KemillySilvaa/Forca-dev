@@ -1,0 +1,20 @@
+# DependÃªncias do Node.js
+node_modules/
+
+# Arquivos de ambiente e informaÃ§Ãµes privadas
+.env
+.env.*
+
+# Banco de dados SQLite
+*.db
+*.sqlite
+*.sqlite3
+
+# Arquivos temporÃ¡rios
+*.log
+.DS_Store
+Thumbs.db
+
+# Arquivos do VS Code
+.vscode/*
+!.vscode/extensions.json
