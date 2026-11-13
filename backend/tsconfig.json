@@ -1,0 +1,38 @@
+
+{
+  "compilerOptions": {
+    // Define a versão do JavaScript gerado.
+    "target": "ES2022",
+
+    // Utiliza os módulos compatíveis com o Node.js.
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+
+    // Define a pasta dos arquivos TypeScript.
+    "rootDir": "./src",
+
+    // Define onde ficarão os arquivos JavaScript compilados.
+    "outDir": "./dist",
+
+    // Ativa verificações rigorosas de tipos.
+    "strict": true,
+
+    // Facilita a importação de bibliotecas.
+    "esModuleInterop": true,
+
+    // Evita verificar novamente os tipos das bibliotecas externas.
+    "skipLibCheck": true,
+
+    // Garante consistência entre letras maiúsculas e minúsculas.
+    "forceConsistentCasingInFileNames": true,
+
+    // Gera arquivos de mapa para facilitar a depuração.
+    "sourceMap": true
+  },
+
+  // Indica quais arquivos devem ser considerados.
+  "include": ["src/**/*.ts"],
+
+  // Evita compilar arquivos gerados.
+  "exclude": ["node_modules", "dist"]
+}

@@ -1,0 +1,55 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Categoria {
+  id       Int       @id @default(autoincrement())
+  nome     String    @unique
+  palavras Palavra[]
+}
+
+model Palavra {
+  id          Int       @id @default(autoincrement())
+  termo       String    @unique
+  dica        String
+  categoriaId Int
+  categoria   Categoria @relation(fields: [categoriaId], references: [id])
+  partidas    Partida[]
+}
+
+model Partida {
+  id                  Int       @id @default(autoincrement())
+  nomeJogador         String
+  palavraId           Int
+  status              String    @default("em_andamento")
+  tentativasRestantes Int       @default(6)
+  letrasTentadas      String    @default("")
+  pontos              Int       @default(0)
+  dificuldade         String    @default("medio")
+  dicaUsada           Boolean   @default(false)
+  criadaEm            DateTime  @default(now())
+  finalizadaEm        DateTime?
+
+  // Relacionamento com a palavra sorteada.
+  palavra Palavra @relation(fields: [palavraId], references: [id])
+
+  // Uma partida pode possuir vários palpites.
+  palpites Palpite[]
+}
+
+model Palpite {
+  id        Int      @id @default(autoincrement())
+  letra     String
+  correta   Boolean
+  criadaEm  DateTime @default(now())
+  partidaId Int
+  partida   Partida  @relation(fields: [partidaId], references: [id])
+
+  @@unique([partidaId, letra])
+}
